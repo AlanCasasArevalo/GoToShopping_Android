@@ -1,4 +1,4 @@
-package alancasasarevalo.com.repository.dao
+package alancasasarevalo.com.repository.model
 
 data class ActivityEntity (val id: Long,
                            val dataBaseId: Long,

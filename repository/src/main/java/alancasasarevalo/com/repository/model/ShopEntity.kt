@@ -1,4 +1,4 @@
-package alancasasarevalo.com.repository.dao
+package alancasasarevalo.com.repository.model
 
 //@JsonIgnoreProperties(ignoreUnknown = true)
 data class ShopEntity(val id: Long,

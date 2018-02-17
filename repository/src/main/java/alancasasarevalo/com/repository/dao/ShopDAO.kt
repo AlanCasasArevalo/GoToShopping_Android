@@ -1,6 +1,7 @@
 package alancasasarevalo.com.repository.dao
 
 import alancasasarevalo.com.repository.DBHelper
+import alancasasarevalo.com.repository.model.ShopEntity
 import android.content.ContentValues
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
