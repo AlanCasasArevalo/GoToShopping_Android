@@ -1,25 +1,22 @@
 package alancasasarevalo.com.repository.model
 
-//@JsonIgnoreProperties(ignoreUnknown = true)
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import com.fasterxml.jackson.annotation.JsonProperty
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 data class ShopEntity(val id: Long,
                       val dataBaseId: Long,
                       val name: String,
-//                       @JsonProperty("description_en") val description:String,
                       val img: String,
-//                       @JsonProperty("logo_img") val logo: String,
-                      val logo: String,
+                      @JsonProperty("logo_img") val logo: String,
                       val address: String,
-        val url: String,
-        val telephone: String,
-        val email: String,
-        val specialOffer : String,
-
-                      val description_en: String,
-//                       @JsonProperty("gps_lat") val latitude: String,
-                      val latitude: String,
-//                       @JsonProperty("gps_lon") val longitude: String,
-                      val longitude: String,
-                      val opening_hours_en: String,
-        val keywordsEn: String
-//                       @JsonProperty("openingHours")val openingHours: String = "",
+                      val url: String,
+                      val telephone: String,
+                      val email: String,
+                      @JsonProperty("special_offer") val specialOffer: String,
+                      @JsonProperty("description_en") val description: String,
+                      @JsonProperty("gps_lat") val latitude: String,
+                      @JsonProperty("gps_lon") val longitude: String,
+                      @JsonProperty("opening_hours_en") val openingHours: String = "",
+                      @JsonProperty("keywords_en") val keywords: String = ""
 )

@@ -126,11 +126,11 @@ internal class ActivityDAO(dbHelper: DBHelper) : DAOPersistable<ActivityEntity> 
         content.put(ActivityDBConstants.KEY_ACTIVITY_TELEPHONE, activityEntity.telephone)
         content.put(ActivityDBConstants.KEY_ACTIVITY_EMAIL, activityEntity.email)
         content.put(ActivityDBConstants.KEY_ACTIVITY_SPECIAL_OFFER, activityEntity.specialOffer)
-        content.put(ActivityDBConstants.KEY_ACTIVITY_DESCRIPTION_EN, activityEntity.description_en)
+        content.put(ActivityDBConstants.KEY_ACTIVITY_DESCRIPTION_EN, activityEntity.description)
         content.put(ActivityDBConstants.KEY_ACTIVITY_LATITUDE, activityEntity.latitude)
         content.put(ActivityDBConstants.KEY_ACTIVITY_LONGITUDE, activityEntity.longitude)
-        content.put(ActivityDBConstants.KEY_ACTIVITY_OPENING_HOURS_EN, activityEntity.opening_hours_en)
-        content.put(ActivityDBConstants.KEY_ACTIVITY_KEYWORDS_EN, activityEntity.keywordsEn)
+        content.put(ActivityDBConstants.KEY_ACTIVITY_OPENING_HOURS_EN, activityEntity.openingHours)
+        content.put(ActivityDBConstants.KEY_ACTIVITY_KEYWORDS_EN, activityEntity.keywords)
 
         return content
     }

@@ -1,4 +1,4 @@
-package alancasasarevalo.com.domain
+package alancasasarevalo.com.domain.interactor
 
 typealias SuccessClosure <Element>  = ( element: Element) -> Unit
 typealias ErrorClosure = (msg: String) -> Unit

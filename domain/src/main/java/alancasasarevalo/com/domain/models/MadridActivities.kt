@@ -1,7 +1,5 @@
 package alancasasarevalo.com.domain.models
 
-import alancasasarevalo.com.domain.AggregateInterface
-
 class MadridActivities (val activies : MutableList<MadridActivity>) : AggregateInterface<MadridActivity> {
     override fun getCountElementList(): Int {
         return activies.size

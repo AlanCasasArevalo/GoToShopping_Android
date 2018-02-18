@@ -126,11 +126,11 @@ internal class ShopDAO(dbHelper: DBHelper) : DAOPersistable<ShopEntity> {
         content.put(ShopDBConstants.KEY_SHOP_TELEPHONE, shopEntity.telephone)
         content.put(ShopDBConstants.KEY_SHOP_EMAIL, shopEntity.email)
         content.put(ShopDBConstants.KEY_SHOP_SPECIAL_OFFER, shopEntity.specialOffer)
-        content.put(ShopDBConstants.KEY_SHOP_DESCRIPTION_EN, shopEntity.description_en)
+        content.put(ShopDBConstants.KEY_SHOP_DESCRIPTION_EN, shopEntity.description)
         content.put(ShopDBConstants.KEY_SHOP_LATITUDE, shopEntity.latitude)
         content.put(ShopDBConstants.KEY_SHOP_LONGITUDE, shopEntity.longitude)
-        content.put(ShopDBConstants.KEY_SHOP_OPENING_HOURS_EN, shopEntity.opening_hours_en)
-        content.put(ShopDBConstants.KEY_SHOP_KEYWORDS_EN, shopEntity.keywordsEn)
+        content.put(ShopDBConstants.KEY_SHOP_OPENING_HOURS_EN, shopEntity.openingHours)
+        content.put(ShopDBConstants.KEY_SHOP_KEYWORDS_EN, shopEntity.keywords)
 
         return content
     }

@@ -1,4 +1,4 @@
-package alancasasarevalo.com.domain
+package alancasasarevalo.com.domain.models
 
 interface ReadAggregate <T> {
     fun getCountElementList() : Int
@@ -12,4 +12,4 @@ interface WriteAggregate <T> {
     fun delete(element: T)
 }
 
-interface AggregateInterface <T> : ReadAggregate <T> , WriteAggregate <T>
+interface AggregateInterface <T> : ReadAggregate<T>, WriteAggregate<T>
