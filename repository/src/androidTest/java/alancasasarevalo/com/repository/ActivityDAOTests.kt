@@ -1,7 +1,7 @@
 package alancasasarevalo.com.repository
 
 import alancasasarevalo.com.repository.dao.ActivityDAO
-import alancasasarevalo.com.repository.dao.ActivityEntity
+import alancasasarevalo.com.repository.model.ActivityEntity
 import android.support.test.InstrumentationRegistry
 import android.util.Log
 import junit.framework.Assert

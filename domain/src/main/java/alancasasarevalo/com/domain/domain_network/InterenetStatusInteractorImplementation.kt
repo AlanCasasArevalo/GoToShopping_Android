@@ -1,7 +1,7 @@
 package alancasasarevalo.com.domain.domain_network
 
-import alancasasarevalo.com.domain.CodeClousure
-import alancasasarevalo.com.domain.ErrorClosure
+import alancasasarevalo.com.domain.interactor.CodeClousure
+import alancasasarevalo.com.domain.interactor.ErrorClosure
 import android.content.Context
 import java.lang.ref.WeakReference
 

@@ -1,7 +1,7 @@
 package alancasasarevalo.com.repository
 
 import alancasasarevalo.com.repository.dao.ShopDAO
-import alancasasarevalo.com.repository.dao.ShopEntity
+import alancasasarevalo.com.repository.model.ShopEntity
 import android.support.test.InstrumentationRegistry
 import android.util.Log
 import junit.framework.Assert.assertEquals

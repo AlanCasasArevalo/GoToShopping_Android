@@ -1,14 +1,14 @@
-package alancasasarevalo.com.domain.interactor
+package alancasasarevalo.com.domain.interactor.getallinteractor
 
-import alancasasarevalo.com.domain.ErrorCompletion
-import alancasasarevalo.com.domain.SuccessCompletion
+import alancasasarevalo.com.domain.interactor.ErrorCompletion
+import alancasasarevalo.com.domain.interactor.SuccessCompletion
 import alancasasarevalo.com.domain.models.MadridActivities
 import alancasasarevalo.com.domain.models.MadridActivity
 import alancasasarevalo.com.domain.models.Shop
 import alancasasarevalo.com.domain.models.Shops
 
 class GetAllElementsInteractorFakeImplementation : GetAllElementInteractor {
-    override fun execute(successShops: SuccessCompletion<Shops>, successActivities: SuccessCompletion<MadridActivities>, error: ErrorCompletion) {
+    override fun execute(successShops: SuccessCompletion<Shops>?, successActivities: SuccessCompletion<MadridActivities>?, error: ErrorCompletion) {
 
         var allOk = false
 
@@ -18,8 +18,8 @@ class GetAllElementsInteractorFakeImplementation : GetAllElementInteractor {
             val shops = createFakeListOfShops()
             val activities = createFakeListOfActivities()
 
-            successShops.successCompletion(shops as Shops)
-            successActivities.successCompletion(activities as MadridActivities)
+            successShops?.successCompletion(shops as Shops)
+            successActivities?.successCompletion(activities as MadridActivities)
         }else{
             error.errorCompletion("Error while accessing the RepositoryInterface")
         }
