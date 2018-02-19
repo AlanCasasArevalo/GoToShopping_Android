@@ -2,8 +2,8 @@ package alancasasarevalo.com.gotoshopping
 
 import alancasasarevalo.com.domain.interactor.ErrorCompletion
 import alancasasarevalo.com.domain.interactor.SuccessCompletion
-import alancasasarevalo.com.domain.interactor.deleteallactivities.DeleteAllShopsImplementation
-import alancasasarevalo.com.domain.interactor.getallinteractor.GetAllElementsInteractorFakeImplementation
+import alancasasarevalo.com.domain.interactor.getallinteractor.GetAllActivitiesInteractorImplementation
+import alancasasarevalo.com.domain.interactor.getallinteractor.GetAllShopsInteractorImplementation
 import alancasasarevalo.com.domain.models.MadridActivities
 import alancasasarevalo.com.domain.models.Shops
 import android.support.multidex.MultiDexApplication
@@ -14,9 +14,9 @@ class MadridGoToShoppingApp : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
 
-        val allActivitiesInteractor = GetAllElementsInteractorFakeImplementation()
+        val allActivitiesInteractor = GetAllActivitiesInteractorImplementation(this)
 
-        val allShopsInteractor = GetAllElementsInteractorFakeImplementation()
+        val allShopsInteractor = GetAllShopsInteractorImplementation(this)
 
         allShopsInteractor.execute(object : SuccessCompletion<Shops> {
             override fun successCompletion(elements: Shops) {
@@ -40,11 +40,11 @@ class MadridGoToShoppingApp : MultiDexApplication() {
             }
         })
 
-        DeleteAllShopsImplementation(this).execute({
-            Log.d("Success", "Base de datos borrada")
-        },{
-            Log.d("Error al borrar", "El error fue $it")
-        })
+//        DeleteAllShopsImplementation(this).execute({
+//            Log.d("Success", "Base de datos borrada")
+//        },{
+//            Log.d("Error al borrar", "El error fue $it")
+//        })
 
     }
 

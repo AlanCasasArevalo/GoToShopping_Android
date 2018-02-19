@@ -42,7 +42,6 @@ class JSONActivityParsingTest {
 
     }
 
-    // TODO:Hay que hacer el parseo de los Latitude y longitude
     @Test
     @Throws(Exception::class)
     fun given_invalid_string_when_containing_json_with_wrong_latitude_then_it_parse_one_shop_correctly() {

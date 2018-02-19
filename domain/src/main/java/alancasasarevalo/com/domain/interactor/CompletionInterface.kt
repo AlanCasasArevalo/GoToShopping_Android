@@ -1,6 +1,5 @@
 package alancasasarevalo.com.domain.interactor
 
-// TODO: hacer algo para que esto devuelva las tiendas y las actividades.
 interface SuccessCompletion <in T> {
     fun successCompletion (elements: T)
 }

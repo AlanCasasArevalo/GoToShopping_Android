@@ -120,7 +120,7 @@ internal class ActivityDAO(dbHelper: DBHelper) : DAOPersistable<ActivityEntity> 
         content.put(ActivityDBConstants.KEY_ACTIVITY_ID_JSON, activityEntity.id)
         content.put(ActivityDBConstants.KEY_ACTIVITY_NAME, activityEntity.name)
         content.put(ActivityDBConstants.KEY_ACTIVITY_IMAGE_URL, activityEntity.img)
-        content.put(ActivityDBConstants.KEY_ACTIVITY_LOGO_IMAGE_URL, activityEntity.logo)
+        content.put(ActivityDBConstants.KEY_ACTIVITY_LOGO_IMAGE_URL, activityEntity.logoImg)
         content.put(ActivityDBConstants.KEY_ACTIVITY_ADDRESS, activityEntity.address)
         content.put(ActivityDBConstants.KEY_ACTIVITY_URL, activityEntity.url)
         content.put(ActivityDBConstants.KEY_ACTIVITY_TELEPHONE, activityEntity.telephone)

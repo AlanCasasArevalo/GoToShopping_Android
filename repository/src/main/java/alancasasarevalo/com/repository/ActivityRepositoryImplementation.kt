@@ -21,7 +21,8 @@ class ActivityRepositoryImplementation (context: Context): RepositoryInterface<A
         cache.getAllElements({
             successCompletion(it)
         },{
-            errorCompletion
+            populateCache(successCompletion, errorCompletion)
+
         })
     }
 

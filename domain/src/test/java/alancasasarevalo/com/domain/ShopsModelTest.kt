@@ -12,7 +12,7 @@ class ShopsModelTest {
     val shop = Shop(1,
             "Cortefiel - Preciados",
             "http://madrid-shops.com/json_new/getShops.php",
-            "https://madrid-shops.com/media/shops/logo-cortefiel-200.jpg",
+            "https://madrid-shops.com/media/shops/logoImg-cortefiel-200.jpg",
             "Monday to Saturday: 10: 00-21: 00",
             "De Lunes a Sábado: 10:00-21:00",
             "",

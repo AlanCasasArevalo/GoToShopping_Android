@@ -20,7 +20,7 @@ class ShopRepositoryImplementation (context: Context): RepositoryInterface<ShopE
             cache.getAllElements({
                 successCompletion(it)
             },{
-                errorCompletion
+                populateCache(successCompletion, errorCompletion)
             })
         }
 

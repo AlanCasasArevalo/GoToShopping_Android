@@ -13,16 +13,41 @@ class CacheActivityImplementation(context: Context): CacheInterface<ActivityEnti
     private val weakContext = WeakReference<Context>(context)
 
     override fun getAllElements(successCompletion: (elements: List<ActivityEntity>) -> Unit, errorCompletion: (errorMessage: String) -> Unit) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Thread(Runnable {
+
+            var activities = ActivityDAO(cacheDBHelper()).queryListElement()
+
+            DispatchOnMainThread(Runnable {
+                if (activities.count() > 0){
+                    successCompletion(activities)
+                }else{
+                    errorCompletion("Error to query activities")
+                }
+            })
+
+        }).run()
     }
 
     override fun saveAllElements(elements: List<ActivityEntity>, successCompletion: () -> Unit, errorCompletion: (errorMessage: String) -> Unit) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+        Thread(Runnable {
+
+            try {
+                elements.forEach{ ActivityDAO(cacheDBHelper()).insertElement(it) }
+                DispatchOnMainThread(Runnable{
+                    successCompletion()
+                })
+
+            }catch(e: Exception){
+                DispatchOnMainThread(Runnable {
+                    errorCompletion("Error inserting activities")
+                })
+            }
+
+        }).run()    }
 
     override fun deleteAllElements(successCompletion: () -> Unit, errorCompletion: (errorMessage: String) -> Unit) {
         Thread(Runnable {
-            var successDeleting = ActivityDAO(cacheDBHelper("MadridShops.sqlite")).deleteAllElementList()
+            var successDeleting = ActivityDAO(cacheDBHelper()).deleteAllElementList()
 
             DispatchOnMainThread(Runnable {
                 if (successDeleting){
@@ -36,8 +61,8 @@ class CacheActivityImplementation(context: Context): CacheInterface<ActivityEnti
     }
 
 
-    private fun cacheDBHelper(name: String): DBHelper {
-        return  buildDBHelper(weakContext.get()!!, name, 1)
+    private fun cacheDBHelper(): DBHelper {
+        return  buildDBHelper(weakContext.get()!!, "GoToShopping.sqlite", 1)
     }
 
 }
