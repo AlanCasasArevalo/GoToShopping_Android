@@ -1,6 +1,13 @@
 package alancasasarevalo.com.domain.models
 
-class Shops (val shops: MutableList<Shop>) : AggregateInterface<Shop> {
+import android.annotation.SuppressLint
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+
+@SuppressLint("ParcelCreator")
+@Parcelize
+data class Shops (val shops: MutableList<Shop>) : AggregateInterface<Shop>, Parcelable {
     override fun getCountElementList(): Int {
         return shops.size
     }

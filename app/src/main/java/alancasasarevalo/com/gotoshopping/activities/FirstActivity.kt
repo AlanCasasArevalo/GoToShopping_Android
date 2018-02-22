@@ -1,25 +1,32 @@
-package alancasasarevalo.com.gotoshopping
+package alancasasarevalo.com.gotoshopping.activities
 
 import alancasasarevalo.com.domain.interactor.ErrorCompletion
 import alancasasarevalo.com.domain.interactor.SuccessCompletion
 import alancasasarevalo.com.domain.interactor.getallinteractor.GenericGetAllElementsInteractorImplementation
 import alancasasarevalo.com.domain.models.MadridActivities
 import alancasasarevalo.com.domain.models.Shops
-import alancasasarevalo.com.gotoshopping.activities.MainActivity
-import android.support.multidex.MultiDexApplication
+import alancasasarevalo.com.gotoshopping.R
+import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 
-class MadridGoToShoppingApp : MultiDexApplication() {
+class FirstActivity : AppCompatActivity() {
 
-    lateinit var shops : Shops
-    lateinit var activities : MadridActivities
+    lateinit var shops:Shops
+    lateinit var activities:MadridActivities
 
-    override fun onCreate() {
-        super.onCreate()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_first)
+
+        setupMap()
+    }
+
+    fun setupMap() {
 
         val genericAllElementsImplementation = GenericGetAllElementsInteractorImplementation(this)
 
         genericAllElementsImplementation.execute(
-                object : SuccessCompletion<Shops?, MadridActivities?> {
+                object : SuccessCompletion<Shops?, MadridActivities?>{
                     override fun successCompletion(elementsT: Shops?, elementsZ: MadridActivities?) {
                         if (elementsT != null && elementsZ != null){
                             shops = elementsT
@@ -28,32 +35,9 @@ class MadridGoToShoppingApp : MultiDexApplication() {
                         }
                     }
                 },
-                object : ErrorCompletion {
+                object : ErrorCompletion{
                     override fun errorCompletion(errorMessage: String) {
                     }
                 })
-
-    }
-
-    override fun onLowMemory() {
-        super.onLowMemory()
-
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

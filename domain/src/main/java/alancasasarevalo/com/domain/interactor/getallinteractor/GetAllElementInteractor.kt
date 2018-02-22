@@ -6,5 +6,5 @@ import alancasasarevalo.com.domain.models.MadridActivities
 import alancasasarevalo.com.domain.models.Shops
 
 interface GetAllElementInteractor {
-    fun execute(successShops: SuccessCompletion<Shops>?, successActivities: SuccessCompletion<MadridActivities>?, error: ErrorCompletion)
+    fun execute(successShops: SuccessCompletion<Shops?, MadridActivities?>, error: ErrorCompletion)
 }

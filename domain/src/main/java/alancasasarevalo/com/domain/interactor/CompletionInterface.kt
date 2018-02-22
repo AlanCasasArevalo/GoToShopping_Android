@@ -1,7 +1,7 @@
 package alancasasarevalo.com.domain.interactor
 
-interface SuccessCompletion <in T> {
-    fun successCompletion (elements: T)
+interface SuccessCompletion <in T, in Z> {
+    fun successCompletion (elementsT: T, elementsZ: Z)
 }
 
 interface ErrorCompletion {
