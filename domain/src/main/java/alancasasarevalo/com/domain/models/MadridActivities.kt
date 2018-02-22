@@ -1,6 +1,12 @@
 package alancasasarevalo.com.domain.models
 
-class MadridActivities (val activies : MutableList<MadridActivity>) : AggregateInterface<MadridActivity> {
+import android.annotation.SuppressLint
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@SuppressLint("ParcelCreator")
+@Parcelize
+data class MadridActivities (val activies : MutableList<MadridActivity>) : AggregateInterface<MadridActivity> , Parcelable{
     override fun getCountElementList(): Int {
         return activies.size
     }
