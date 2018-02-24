@@ -12,17 +12,21 @@ import android.content.Context
 import com.fasterxml.jackson.databind.exc.InvalidFormatException
 import java.lang.ref.WeakReference
 
+
+//TODO: Repasar el repositorio
 class GenericRepositoryImplementation(context: Context) : GenericRepositoryInterface<ShopEntity, ActivityEntity> {
 
     private val weakContext = WeakReference<Context>(context)
     private val cache: GenericCacheImplementation = GenericCacheImplementation(weakContext.get()!!)
 
     override fun getAllElements(successCompletionElementT: (element: List<ShopEntity>, List<ActivityEntity>) -> Unit, errorCompletion: (errorMessage: String) -> Unit) {
+
         cache.getAllElements({ shopsEntity, activitiesEntity ->
             successCompletionElementT(shopsEntity, activitiesEntity)
         }, {
             populateCache(successCompletionElementT, errorCompletion)
         })
+
     }
 
     override fun deleteAllElements(successCompletionElementT: () -> Unit, successCompletionElementZ: () -> Unit, errorCompletion: (errorMessage: String) -> Unit) {
@@ -53,8 +57,9 @@ class GenericRepositoryImplementation(context: Context) : GenericRepositoryInter
                     return
                 }
 
+                //TODO: No se si es aqui el error de diferenciar entre actividades y tiendas
                 //store result in cache
-                cache.saveAllElements(responseShopsEntity.result, responseActivitiesEntity.result, successCompletion = {
+                cache.saveAllElements(responseShopsEntity.result, responseActivitiesEntity.result, successCompletion = {shopEntity, activityEntity ->
                     successCompletion(responseShopsEntity.result, responseActivitiesEntity.result)
                 },errorCompletion = {
                     errorCompletion("Something happened on the way to heaven!!!! $it")
@@ -63,6 +68,8 @@ class GenericRepositoryImplementation(context: Context) : GenericRepositoryInter
             }
         }, object : ErrorCompletion {
             override fun errorCompletion(errorMessage: String) {
+                //TODO: Enviar el error a alguien
+
             }
 
         })

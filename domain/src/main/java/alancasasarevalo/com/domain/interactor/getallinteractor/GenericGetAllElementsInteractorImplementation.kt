@@ -14,23 +14,26 @@ import android.content.Context
 import android.util.Log
 import java.lang.ref.WeakReference
 
+//TODO: eliminar los Logs comentados
 class GenericGetAllElementsInteractorImplementation(context: Context) : GetAllElementInteractor {
-    val weakReference = WeakReference(context)
+    private val weakReference = WeakReference(context)
     private var repository: GenericRepositoryInterface<ShopEntity, ActivityEntity> = GenericRepositoryImplementation(weakReference.get()!!)
 
     override fun execute(success: SuccessCompletion<Shops?, MadridActivities?>, error: ErrorCompletion) {
-        repository.getAllElements(successCompletionElementT = {shopEntities, activityEntities ->
-            val activities: MadridActivities = entityActivitiesMapper(activityEntities)
+        repository.getAllElements(successCompletionElementT = { shopEntities: List<ShopEntity>, activityEntities: List<ActivityEntity> ->
             val shops: Shops = entityShopsMapper(shopEntities)
+            val activities: MadridActivities = entityActivitiesMapper(activityEntities)
+
             success.successCompletion(shops, activities)
         }, errorCompletion = {
             Log.d("Error","Error to get all elements from repository $it")
         })
+
     }
 
     private fun entityShopsMapper(list: List<ShopEntity>): Shops {
 
-        val tempList = ArrayList<Shop>()
+        val tempShopList = ArrayList<Shop>()
 
         list.forEach {
 
@@ -50,16 +53,18 @@ class GenericGetAllElementsInteractorImplementation(context: Context) : GetAllEl
                     it.keywords
             )
 
-            tempList.add(shop)
+            tempShopList.add(shop)
         }
 
-        val shops = Shops(tempList)
+        val shops = Shops(tempShopList)
+
         return shops
     }
 
+
     private fun entityActivitiesMapper(list: List<ActivityEntity>): MadridActivities {
 
-        val tempList = ArrayList<MadridActivity>()
+        val tempActivitiesList = ArrayList<MadridActivity>()
 
         list.forEach {
 
@@ -79,15 +84,15 @@ class GenericGetAllElementsInteractorImplementation(context: Context) : GetAllEl
                     it.keywords
             )
 
-
-            tempList.add(activity)
+            tempActivitiesList.add(activity)
         }
 
-        val activities = MadridActivities(tempList)
+        val activities = MadridActivities(tempActivitiesList)
+
         return activities
     }
 
-    fun getCorrectCoordinateComponent(coordinateComponent: String): String {
+    private fun getCorrectCoordinateComponent(coordinateComponent: String): String {
         var coordinate = 0.0f
         val s = coordinateComponent.replace(",", "")
         try {

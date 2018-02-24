@@ -11,7 +11,6 @@ internal class ShopDAO(dbHelper: DBHelper) : DAOPersistable<ShopEntity> {
     private val dbReadOnlyConnection: SQLiteDatabase = dbHelper.readableDatabase
     private val dbReadWriteConnection: SQLiteDatabase = dbHelper.writableDatabase
 
-
     override fun queryWithId(id: Long): ShopEntity {
         val cursor = queryCursor(id)
         cursor.moveToFirst()

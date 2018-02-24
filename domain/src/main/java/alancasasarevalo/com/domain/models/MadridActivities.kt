@@ -6,28 +6,28 @@ import kotlinx.android.parcel.Parcelize
 
 @SuppressLint("ParcelCreator")
 @Parcelize
-data class MadridActivities (val activies : MutableList<MadridActivity>) : AggregateInterface<MadridActivity> , Parcelable{
+data class MadridActivities (val activities: MutableList<MadridActivity>) : AggregateInterface<MadridActivity> , Parcelable{
     override fun getCountElementList(): Int {
-        return activies.size
+        return activities.size
     }
 
     override fun getAllElements(): List<MadridActivity> {
-        return activies
+        return activities
     }
 
     override fun getElementByPosition(position: Int): MadridActivity {
-        return activies[position]
+        return activities[position]
     }
 
     override fun addNewElement(element: MadridActivity) {
-        activies.add(element)
+        activities.add(element)
     }
 
     override fun deleteElementByPosition(position: Int) {
-        activies.removeAt(position)
+        activities.removeAt(position)
     }
 
     override fun delete(element: MadridActivity) {
-        activies.remove(element)
+        activities.remove(element)
     }
 }

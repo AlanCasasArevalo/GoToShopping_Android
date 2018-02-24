@@ -4,6 +4,7 @@ import alancasasarevalo.com.repository.model.ActivityEntity
 import alancasasarevalo.com.repository.model.ShopEntity
 import alancasasarevalo.com.repository.network.json.JsonEntitiesParser
 import alancasasarevalo.com.repository.util.ReadJsonFile
+import android.util.Log
 import com.fasterxml.jackson.databind.exc.InvalidFormatException
 import junit.framework.Assert.*
 import org.junit.Test
@@ -67,8 +68,8 @@ class JSONShopsParsingTest {
                     "",
                     "",
                     "",
-                    "40.4180563",
-                    "-3.7010172999999895",
+                    "40.41805,63",
+                    "-3.7010,172999999895",
                     "",
                     ""
             )
@@ -78,9 +79,21 @@ class JSONShopsParsingTest {
 
         assertNotNull(shop)
         assertNotSame("Parsing failed CRASH", shop.name)
-        assertEquals(40.4180563f, shop.latitude.toFloat(), 0.1f)
+//        assertEquals(40.4180563f, getCorrectCoordinateComponent(shop.latitude.toFloat()), 0.1f)
+
+        assertEquals(getCorrectCoordinateComponent(shop.latitude).toFloat(), 40.4180563f )
 
     }
 
+    private fun getCorrectCoordinateComponent(coordinateComponent: String): String {
+        var coordinate = 0.0f
+        val s = coordinateComponent.replace(",", "")
+        try {
+            coordinate = java.lang.Float.parseFloat(s)
+        } catch (e: Exception) {
+            Log.d("ERROR CONVERTING", String.format("Can't convert %s", coordinateComponent))
+        }
+        return coordinate.toString()
+    }
 
 }

@@ -72,9 +72,4 @@ class ShopsModelTest {
         assertEquals(1, sut.getCountElementList())
     }
 
-
-
-
-
-
 }

@@ -21,18 +21,12 @@ class GenericGetJsonManagerVolley (context: Context): GenericGetJsonManagerInter
             successCompletion.successCompletion(it)
 
         }, Response.ErrorListener {
-
             errorCompletion.errorCompletion(it.localizedMessage)
-
         })
         val requestZ = StringRequest(urlZ, Response.Listener {
-
             successCompletion.successCompletion(it)
-
         }, Response.ErrorListener {
-
             errorCompletion.errorCompletion(it.localizedMessage)
-
         })
 
         requestQueue().add(requestT)

@@ -1,7 +1,5 @@
 package alancasasarevalo.com.repository
 
-import alancasasarevalo.com.repository.network.GetJsonManagerInterface
-import alancasasarevalo.com.repository.network.GetJsonManagerVolley
 import android.support.test.InstrumentationRegistry
 import junit.framework.Assert
 import org.junit.Test

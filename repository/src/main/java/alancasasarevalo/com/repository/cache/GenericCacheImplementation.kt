@@ -10,7 +10,7 @@ import alancasasarevalo.com.repository.network.DispatchOnMainThread
 import android.content.Context
 import java.lang.ref.WeakReference
 
-class GenericCacheImplementation (context: Context) : GenericCacheInterface<ShopEntity, ActivityEntity> {
+class GenericCacheImplementation(context: Context) : GenericCacheInterface<ShopEntity, ActivityEntity> {
 
     private val weakContext = WeakReference<Context>(context)
 
@@ -22,29 +22,33 @@ class GenericCacheImplementation (context: Context) : GenericCacheInterface<Shop
 
             DispatchOnMainThread(Runnable {
                 when {
-                    shops.count() > 0 && activities.count() > 0-> successCompletionElement(shops, activities)
+                    shops.count() > 0 && activities.count() > 0 -> successCompletionElement(shops, activities)
+
                     else -> errorCompletion("Error to query shops")
                 }
+                cacheDBHelper().close()
             })
 
         }).run()
     }
 
-    override fun saveAllElements(elementsT: List<ShopEntity>, elementsZ: List<ActivityEntity>, successCompletion: () -> Unit, errorCompletion: (errorMessage: String) -> Unit) {
+    // TODO:Posible fallo al grabar por que no diferencia entre actividades y tiendas en el cache
+    override fun saveAllElements(elementsT: List<ShopEntity>, elementsZ: List<ActivityEntity>, successCompletion: (List<ShopEntity>, List<ActivityEntity>) -> Unit, errorCompletion: (errorMessage: String) -> Unit) {
         Thread(Runnable {
 
             try {
-                elementsT.forEach{ ShopDAO(cacheDBHelper()).insertElement(it) }
-                DispatchOnMainThread(Runnable{
-                    successCompletion()
-                })
 
-                elementsZ.forEach{ ActivityDAO(cacheDBHelper()).insertElement(it) }
-                DispatchOnMainThread(Runnable{
-                    successCompletion()
-                })
+                elementsT.forEach{
+                    ShopDAO(cacheDBHelper()).insertElement(it)
+                    elementsZ.forEach {
+                        ActivityDAO(cacheDBHelper()).insertElement(it)
+                        DispatchOnMainThread(Runnable {
+                            successCompletion(elementsT, elementsZ)
+                        })
+                    }
+                }
 
-            }catch(e: Exception){
+            } catch (e: Exception) {
                 DispatchOnMainThread(Runnable {
                     errorCompletion("Error inserting shops")
                 })
@@ -53,17 +57,17 @@ class GenericCacheImplementation (context: Context) : GenericCacheInterface<Shop
         }).run()
     }
 
-
-    override fun deleteAllElements(successCompletionElementT: () -> Unit,successCompletionElementZ: () -> Unit, errorCompletion: (errorMessage: String) -> Unit) {
+    override fun deleteAllElements(successCompletionElementT: () -> Unit, successCompletionElementZ: () -> Unit, errorCompletion: (errorMessage: String) -> Unit) {
         Thread(Runnable {
-            var successActivitiesDeleted = ActivityDAO(cacheDBHelper()).deleteAllElementList()
             var successShopsDeleted = ShopDAO(cacheDBHelper()).deleteAllElementList()
+            var successActivitiesDeleted = ActivityDAO(cacheDBHelper()).deleteAllElementList()
 
             DispatchOnMainThread(Runnable {
-                if (successActivitiesDeleted || successShopsDeleted){
+                if (successShopsDeleted || successActivitiesDeleted) {
                     successCompletionElementT()
                     successCompletionElementZ()
-                }else{
+                    cacheDBHelper().close()
+                } else {
                     errorCompletion("Error deleting")
                 }
             })
@@ -71,8 +75,9 @@ class GenericCacheImplementation (context: Context) : GenericCacheInterface<Shop
         }).run()
     }
 
+    //TODO: No se si es aqui el error de diferenciar entre actividades y tiendas
     private fun cacheDBHelper(): DBHelper {
-        return  buildDBHelper(weakContext.get()!!, "GoToShopping.sqlite", 1)
+        return buildDBHelper(weakContext.get()!!, "GoToShopping.sqlite", 1)
     }
 
 }

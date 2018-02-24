@@ -1,4 +1,4 @@
-package alancasasarevalo.com.gotoshopping.activities
+package alancasasarevalo.com.gotoshopping.activity
 
 import alancasasarevalo.com.domain.interactor.ErrorCompletion
 import alancasasarevalo.com.domain.interactor.SuccessCompletion
@@ -8,11 +8,15 @@ import alancasasarevalo.com.domain.models.Shops
 import alancasasarevalo.com.gotoshopping.R
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
+
+//TODO: Eliminar los log
 
 class FirstActivity : AppCompatActivity() {
 
-    lateinit var shops:Shops
-    lateinit var activities:MadridActivities
+
+    var shops:Shops? = null
+    var activities:MadridActivities? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +35,14 @@ class FirstActivity : AppCompatActivity() {
                         if (elementsT != null && elementsZ != null){
                             shops = elementsT
                             activities = elementsZ
-                            startActivity(MainActivity.intent(baseContext, shops, activities))
+
+                            //TODO: ver donde esta fallando la llamada a actividades
+                            activities?.activities?.forEach{
+                                Log.d("Activity name", "${it.name}")
+                            }
+                            //TODO: Hacer que se pasen las acticidades y las tiendas cuando se acaben de cargar todas.
+                            //TODO: el intent esta mal hecho, porque this no funciona dentro del objeto ya que referencia al objeto.
+//                            startActivity(MainActivity.intent(FirstActivity().baseContext, shops, activities))
                         }
                     }
                 },

@@ -26,13 +26,18 @@ android {
     androidExtensions {
         experimental = true
     }
+
+    //It's necessary to able DataBinding
+    dataBinding {
+        enabled = true
+    }
+
 }
 
 dependencies {
     //This do able domain dependency
     implementation project(':domain')
-
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
@@ -43,5 +48,14 @@ dependencies {
 
     //Enabling multidex suport avoid 64K method limit (see attached: https://developer.android.com/studio/build/multidex.html)
     implementation 'com.android.support:multidex:1.0.0'
+
+    //This implementation do able Navigation Bar Button
+    implementation 'com.android.support:design:26.1.0'
+
+    //This dependency able DataBind
+    kapt 'com.android.databinding:compiler:3.0.1'
+
+    //commons module dependencies
+    implementation project(':commons')
 
 }
