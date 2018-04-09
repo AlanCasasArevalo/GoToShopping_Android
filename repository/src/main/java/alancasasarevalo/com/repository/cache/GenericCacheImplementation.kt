@@ -32,7 +32,6 @@ class GenericCacheImplementation(context: Context) : GenericCacheInterface<ShopE
         }).run()
     }
 
-    // TODO:Posible fallo al grabar por que no diferencia entre actividades y tiendas en el cache
     override fun saveAllElements(elementsT: List<ShopEntity>, elementsZ: List<ActivityEntity>, successCompletion: (List<ShopEntity>, List<ActivityEntity>) -> Unit, errorCompletion: (errorMessage: String) -> Unit) {
         Thread(Runnable {
 
@@ -75,7 +74,6 @@ class GenericCacheImplementation(context: Context) : GenericCacheInterface<ShopE
         }).run()
     }
 
-    //TODO: No se si es aqui el error de diferenciar entre actividades y tiendas
     private fun cacheDBHelper(): DBHelper {
         return buildDBHelper(weakContext.get()!!, "GoToShopping.sqlite", 1)
     }

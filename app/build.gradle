@@ -45,17 +45,15 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-
     //Enabling multidex suport avoid 64K method limit (see attached: https://developer.android.com/studio/build/multidex.html)
     implementation 'com.android.support:multidex:1.0.0'
-
     //This implementation do able Navigation Bar Button
     implementation 'com.android.support:design:26.1.0'
-
     //This dependency able DataBind
     kapt 'com.android.databinding:compiler:3.0.1'
-
     //commons module dependencies
     implementation project(':commons')
 
+    //This dependency able google maps (see attached: https://developers.google.com/android/guides/setup)
+    implementation 'com.google.android.gms:play-services-maps:11.8.0'
 }

@@ -1,4 +1,4 @@
-package com.alancasasarevalo.commons;
+package alancasasarevalo.com.commons;
 
 import org.junit.Test;
 

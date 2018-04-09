@@ -1,4 +1,4 @@
-package com.alancasasarevalo.commons;
+package alancasasarevalo.com.commons;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.alancasasarevalo.commons.test", appContext.getPackageName());
+        assertEquals("alancasasarevalo.com.commons.test", appContext.getPackageName());
     }
 }
